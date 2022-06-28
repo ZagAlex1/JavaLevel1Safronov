@@ -5,13 +5,28 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        testRandom();
+//        testRandom();
         testConsoleInput();
     }
 
     private static void testConsoleInput() {
-        Scanner scanner = new Scanner(System.in);
+        int a = getNumFromScanner();
+        int b = getNumFromScanner();
+        TestMethods.multiply(a, b);
+    }
+
+    private static int getNumFromScanner() {
+        while (true) {
+            System.out.print("Введите целое число: ");
+            if (scanner.hasNextInt()) {
+                return scanner.nextInt();
+            }
+            System.out.println(scanner.next() + " - это не число");
+        }
     }
 
     private static void testRandom() {
