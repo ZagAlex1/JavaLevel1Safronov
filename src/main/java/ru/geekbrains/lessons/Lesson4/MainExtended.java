@@ -3,15 +3,15 @@ package ru.geekbrains.lessons.Lesson4;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class MainExtended {
 
     private static final int SIZE = 3;
 
     private static final char DOT_EMPTY = '•';
     private static final char DOT_HUMAN = 'X';
     private static final char DOT_AI = '0';
-    public static final String HEADER_FIRST_SYMBOL = "♥";
-    public static final String SPACE_MAP = " ";
+    private static final String HEADER_FIRST_SYMBOL = "♥";
+    private static final String SPACE_MAP = " ";
 
     private static final char[][] MAP = new char[SIZE][SIZE];
 
@@ -20,10 +20,24 @@ public class Main {
 
     private static int turnsCount = 0;
 
-    public static void main(String[] args) {
+    public static void turnGame() {
+        do {
+            System.out.println("\n\nИгра начинается!!!");
+            init();
+            printMap();
+            playGame();
+        } while (isContinueGame());
+        endGame();
+    }
+
+    private static void init() {
+        turnsCount = 0;
+        //получить размер игрового поля
+        //подобрать победную серию фишек для выбранного поля
+        //размер 3-5 -> победная серия 3
+        //размер 7-10 -> победная серия 4
+        //размер 10+ -> победная серия 5
         initMap();
-        printMap();
-        playGame();
     }
 
     private static void printMap() {
@@ -85,10 +99,10 @@ public class Main {
 
         while (true) {
             System.out.print("Введите координату строки: ");
-            rowNumber = in.nextInt() - 1;
+            rowNumber = getValidNumberFromScanner() - 1;
 
             System.out.print("Введите координату столбца: ");
-            columnNumber = in.nextInt() - 1;
+            columnNumber = getValidNumberFromScanner() - 1;
 
             if (isCellFree(rowNumber, columnNumber)) {
                 break;
@@ -98,6 +112,25 @@ public class Main {
 
         MAP[rowNumber][columnNumber] = DOT_HUMAN;
         turnsCount++;
+    }
+
+    private static int getValidNumberFromScanner() {
+        while (true) {
+            if (in.hasNextInt()) {
+                int n = in.nextInt();
+                if (isNumberValid(n)) {
+                    return n;
+                }
+                System.out.println("!!!Проверьте значение координаты. Должно быть от 1 до " + SIZE);
+            } else {
+                System.out.println("!!!Ввод допускает лишь целые числа!");
+                in.next();
+            }
+        }
+    }
+
+    private static boolean isNumberValid(int n) {
+        return n >= 1 && n <= SIZE;
     }
 
     private static boolean isCellFree(int rowNumber, int columnNumber) {
@@ -175,5 +208,18 @@ public class Main {
 
         MAP[rowNumber][columnNumber] = DOT_AI;
         turnsCount++;
+    }
+
+    private static boolean isContinueGame() {
+        System.out.println("Хотите продолжить? y\\n");
+        return switch (in.next()) {
+            case "y", "yes", "да", "+", "д" -> true;
+            default -> false;
+        };
+    }
+
+    private static void endGame() {
+        in.close();
+        System.out.println("Игра окончена");
     }
 }
