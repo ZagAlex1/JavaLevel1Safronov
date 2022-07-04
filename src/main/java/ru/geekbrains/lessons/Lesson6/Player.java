@@ -11,9 +11,6 @@ public abstract class Player {
         this.russianProfessionTitle = russianProfessionTitle;
     }
 
-//    public Player() {
-//    }
-
     public int getPoint() {
         return point;
     }
