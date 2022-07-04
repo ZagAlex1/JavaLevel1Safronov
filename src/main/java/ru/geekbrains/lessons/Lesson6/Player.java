@@ -1,6 +1,6 @@
 package ru.geekbrains.lessons.Lesson6;
 
-public class Player {
+public abstract class Player {
     private String nickname;
     private int point;
     protected String russianProfessionTitle;
@@ -43,9 +43,7 @@ public class Player {
         return String.format("%s %s имеет %d", russianProfessionTitle, nickname, point);
     }
 
-    public void doAction() {
-        System.out.println(russianProfessionTitle + " " + nickname + " совершает действие");
-    }
+    public abstract void doAction();
 
     public void printInfo() {
         System.out.println(this);

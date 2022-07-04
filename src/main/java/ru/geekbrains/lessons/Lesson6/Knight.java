@@ -10,7 +10,7 @@ public class Knight extends Player {
 
     @Override
     public void doAction() {
-        System.out.printf("%s  %s машет мечом %s", getRussianProfessionTitle(), getNickname(), getSwordTitle());
+        System.out.printf("%s  %s машет мечом %s%n", getRussianProfessionTitle(), getNickname(), getSwordTitle());
     }
 
     @Override
