@@ -32,6 +32,15 @@ public class StringMethods {
         System.out.println(a3.toUpperCase());
 
         System.out.println(a3.charAt(10));
-        System.out.println(a3.indexOf('e',2));
+        System.out.println(a3.indexOf('e', 2));
+
+        for (String s : a3.split("\s+", 3)) {
+            System.out.println("Слово: " + s);
+        }
+
+        System.out.println(a3.replaceAll("My", "Our"));
+        System.out.println(a3.startsWith("/auth"));
+
+        System.out.println(String.join("| ", a1, a2, b1));
     }
 }
