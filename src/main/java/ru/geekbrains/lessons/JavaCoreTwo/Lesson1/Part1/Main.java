@@ -8,12 +8,32 @@ public class Main {
         Plane plane = new Plane();
         Wolf wolf = new Wolf();
 
+        Participant racoon = new Participant() {
+            @Override
+            public void jump() {
 
-        Animal[] animals = {cat, dog, duck, wolf};
-        Flying[] flyings = {duck, plane, wolf};
-        Runner[] runners = {dog, duck, cat, wolf };
+            }
+
+            @Override
+            public void run() {
+
+            }
+        };
+
+        Animal kangaroo = new Animal() {
+            @Override
+            public void run() {
+
+            }
+            // Анонимный класс
+        };
+
+        Animal[] animals = {cat, dog, duck, wolf, kangaroo };
+        Flying[] flyings = {duck, plane};
+        Runner[] runners = {dog, duck, cat, wolf, racoon };
 
         flyings[1].fly();
         runners[1].run();
+
     }
 }
